@@ -1,0 +1,10 @@
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Creating new window
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LWJGL 3.3.2+13
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LibGDX 1.12.0
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Starting Pizza Shop Simulator 1.1.0-dev.1
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.item.Items) Registering items
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:dough
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:sauce
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:cheese
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:pepperoni
+[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Initialization stage complete
