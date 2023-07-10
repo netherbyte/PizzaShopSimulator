@@ -9,9 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.netherbyte.pizzashopsimulator.client.resource.AssetProvider;
+import com.netherbyte.pizzashopsimulator.client.resource.Fonts;
 import com.netherbyte.pizzashopsimulator.save.Saves;
 
-import static com.badlogic.gdx.Gdx.files;
 import static com.netherbyte.pizzashopsimulator.SharedConstants.DEFAULT_HEIGHT;
 import static com.netherbyte.pizzashopsimulator.SharedConstants.DEFAULT_WIDTH;
 
@@ -35,20 +36,20 @@ public class HudOverlay {
         cash = Saves.getCurrentSave().getCash();
         pendingSales = Saves.getCurrentSave().getPendingSalesCount();
 
-        viewport = new FitViewport(DEFAULT_WIDTH / 1.5f, DEFAULT_HEIGHT / 1.5f, new OrthographicCamera());
+        viewport = new FitViewport(DEFAULT_WIDTH, DEFAULT_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, batch);
 
         Table table = new Table();
         table.top();
         table.setFillParent(true);
 
-        salesLabel = new Label(String.valueOf(sales), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        cashLabel = new Label("$" + cash, new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        pendingSalesLabel = new Label(String.valueOf(pendingSales), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        salesLabel = new Label(String.valueOf(sales), new Label.LabelStyle(AssetProvider.getFont(Fonts.DEFAULT), Color.BLACK));
+        cashLabel = new Label("$" + cash, new Label.LabelStyle(AssetProvider.getFont(Fonts.DEFAULT), Color.BLACK));
+        pendingSalesLabel = new Label(String.valueOf(pendingSales), new Label.LabelStyle(AssetProvider.getFont(Fonts.DEFAULT), Color.BLACK));
 
-        salesTextLabel = new Label("Sales", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        cashTextLabel = new Label("Cash", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        pendingSalesTextLabel = new Label("Pending Sales", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        salesTextLabel = new Label("Sales", new Label.LabelStyle(AssetProvider.getFont(Fonts.DEFAULT), Color.BLACK));
+        cashTextLabel = new Label("Cash", new Label.LabelStyle(AssetProvider.getFont(Fonts.DEFAULT), Color.BLACK));
+        pendingSalesTextLabel = new Label("Pending Sales", new Label.LabelStyle(AssetProvider.getFont(Fonts.DEFAULT), Color.BLACK));
 
         table.add(salesTextLabel);
         table.add(cashTextLabel);

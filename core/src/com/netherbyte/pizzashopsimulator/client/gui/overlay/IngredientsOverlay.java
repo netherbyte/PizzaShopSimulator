@@ -1,14 +1,9 @@
 package com.netherbyte.pizzashopsimulator.client.gui.overlay;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -16,8 +11,7 @@ import com.netherbyte.pizzashopsimulator.item.Ingredient;
 import com.netherbyte.pizzashopsimulator.item.Items;
 import com.netherbyte.pizzashopsimulator.item.Pizza;
 import com.netherbyte.pizzashopsimulator.registry.Registries;
-import com.netherbyte.pizzashopsimulator.resource.AssetProvider;
-import com.netherbyte.pizzashopsimulator.save.Saves;
+import com.netherbyte.pizzashopsimulator.client.resource.AssetProvider;
 import com.netherbyte.pizzashopsimulator.util.PointerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

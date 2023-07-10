@@ -1,16 +1,15 @@
-package com.netherbyte.pizzashopsimulator.resource;
+package com.netherbyte.pizzashopsimulator.client.resource;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureData;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.netherbyte.pizzashopsimulator.registry.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.badlogic.gdx.Gdx.files;
 
 public class AssetProvider {
     private static final Logger logger = LoggerFactory.getLogger(AssetProvider.class);
@@ -32,9 +31,26 @@ public class AssetProvider {
         }
     }
 
-    public static boolean isMissing(Identifier identifier) {
+    public static BitmapFont getFont(Identifier identifier) {
+        try {
+            return new BitmapFont(files.internal("assets/" + identifier.group + "/font/" + identifier.key + ".fnt"));
+        } catch (GdxRuntimeException e) {
+            return new BitmapFont();
+        }
+    }
+
+    public static boolean isTextureMissing(Identifier identifier) {
         try {
             new Texture("assets/" + identifier.group + "/textures/" + identifier.key + ".png");
+        } catch (GdxRuntimeException e) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isFontMissing(Identifier identifier) {
+        try {
+            new BitmapFont(files.internal("assets/" + identifier.group + "/font/" + identifier.key + ".fnt"));
         } catch (GdxRuntimeException e) {
             return true;
         }

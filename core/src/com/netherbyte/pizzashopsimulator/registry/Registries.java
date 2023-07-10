@@ -1,5 +1,6 @@
 package com.netherbyte.pizzashopsimulator.registry;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.netherbyte.pizzashopsimulator.client.block.Block;
 import com.netherbyte.pizzashopsimulator.item.Ingredient;
 import org.slf4j.Logger;
@@ -21,5 +22,7 @@ public class Registries {
 
         REGISTRIES.add(INGREDIENTS);
         REGISTRIES.add(BLOCKS);
+
+        logger.info("Initialized registries");
     }
 }

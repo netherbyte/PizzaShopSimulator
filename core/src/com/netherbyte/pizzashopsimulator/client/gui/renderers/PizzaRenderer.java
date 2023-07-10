@@ -1,16 +1,14 @@
 package com.netherbyte.pizzashopsimulator.client.gui.renderers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.netherbyte.pizzashopsimulator.item.Ingredient;
 import com.netherbyte.pizzashopsimulator.item.Pizza;
 import com.netherbyte.pizzashopsimulator.registry.Registries;
-import com.netherbyte.pizzashopsimulator.resource.AssetProvider;
+import com.netherbyte.pizzashopsimulator.client.resource.AssetProvider;
 
 public class PizzaRenderer {
     public static void render(Pizza pizza, Viewport viewport, Batch batch, float x, float y, float scale) {

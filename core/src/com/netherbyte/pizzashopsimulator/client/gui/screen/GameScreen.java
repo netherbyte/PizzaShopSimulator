@@ -5,7 +5,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -15,10 +14,8 @@ import com.netherbyte.pizzashopsimulator.client.block.Blocks;
 import com.netherbyte.pizzashopsimulator.client.gui.overlay.HudOverlay;
 import com.netherbyte.pizzashopsimulator.client.gui.overlay.IngredientsOverlay;
 import com.netherbyte.pizzashopsimulator.client.gui.renderers.PizzaRenderer;
-import com.netherbyte.pizzashopsimulator.item.Items;
 import com.netherbyte.pizzashopsimulator.item.Pizza;
-import com.netherbyte.pizzashopsimulator.registry.Registries;
-import com.netherbyte.pizzashopsimulator.resource.AssetProvider;
+import com.netherbyte.pizzashopsimulator.client.resource.AssetProvider;
 import com.netherbyte.pizzashopsimulator.save.Save;
 import com.netherbyte.pizzashopsimulator.save.Saves;
 import com.netherbyte.pizzashopsimulator.util.PointerUtil;
@@ -99,8 +96,8 @@ public class GameScreen implements Screen {
         if (PointerUtil.checkHitbox(
                 pizzaPos.x - (pizzaSize.x * pizzaScale / 2),
                 pizzaPos.y - (pizzaSize.y * pizzaScale / 2),
-                pizzaPos.x + (pizzaSize.x * pizzaScale ),
-                pizzaPos.y + (pizzaSize.y * pizzaScale )
+                pizzaPos.x + (pizzaSize.x * pizzaScale),
+                pizzaPos.y + (pizzaSize.y * pizzaScale)
         ) && PointerUtil.isButtonJustPressed(0) && ovenContent == null) {
             ovenContent = currentPizza;
         }

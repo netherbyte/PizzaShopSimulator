@@ -4,14 +4,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.netherbyte.pizzashopsimulator.client.gui.screen.GameScreen;
-import com.netherbyte.pizzashopsimulator.client.main.Main;
+import com.netherbyte.pizzashopsimulator.client.main.Initializer;
 
 public class GuiManager extends Game {
     public SpriteBatch batch;
 
     @Override
     public void create () {
-        Main.postInit();
+        Initializer.postInit();
         batch = new SpriteBatch();
         // this is for development only!!! production versions should have MenuScreen as the default
         setScreen(new GameScreen(this));

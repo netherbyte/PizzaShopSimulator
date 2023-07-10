@@ -22,8 +22,22 @@ public class Desktop {
 		config.useVsync(DesktopLauncherConfig.CONFIG.vsync());
 		config.setWindowedMode(DesktopLauncherConfig.CONFIG.width(), DesktopLauncherConfig.CONFIG.height());
 		config.setTitle(DesktopLauncherConfig.CONFIG.title());
-		if (Main.init()) {
-			new Lwjgl3Application(new GuiManager(), config);
+		if (Initializer.init()) {
+			Thread game = new Thread("Game") {
+				@Override
+				public void run() {
+					new Lwjgl3Application(new GuiManager(), config);
+				}
+			};
+			game.start();
+			try {
+				game.join();
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+			Shutdown.shutdown();
+		} else {
+			throw new InitializationException("Failed to initialize game");
 		}
 	}
 }
