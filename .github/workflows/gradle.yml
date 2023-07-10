@@ -21,7 +21,7 @@ jobs:
   build:
     strategy:
       matrix:
-        java-version: ['17', '18']
+        java-version: ['11', '16', '17', '18']
 
     runs-on: ubuntu-latest
 
@@ -38,14 +38,8 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: dist
-    - name: Upload artifacts
-      uses: actions/create-release@v1
-      id: create_release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
       with:
-        draft: false
-        prerelease: true
-        release_name: 'latest'
-        tag_name: ${github.ref}}
-        body_path: CHANGELOG.md
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+        name: latest.jar
+        path: ./desktop/build/libs/*
