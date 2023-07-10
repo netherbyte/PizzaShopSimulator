@@ -1,10 +1,16 @@
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Creating new window
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LWJGL 3.3.2+13
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LibGDX 1.12.0
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Starting Pizza Shop Simulator 1.1.0-dev.1
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.item.Items) Registering items
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:dough
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:sauce
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:cheese
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:pepperoni
-[13:55:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Initialization stage complete
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Creating new window
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LWJGL 3.3.2+13
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LibGDX 1.12.0
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Starting Pizza Shop Simulator 1.1.0-dev.1
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registries) Initializing registries
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.item.Items) Registering items
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:dough
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:sauce
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:cheese
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:pepperoni
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.block.Blocks) Registering blocks
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:oven
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Initialization stage complete
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Beginning post initialization stage
+[11:05:43] [main/WARN] (com.netherbyte.pizzashopsimulator.client.main.Main) Missing texture: pizzashopsimulator:oven (Not checking for block states)
+[11:05:43] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Main) Post initialization stage complete

@@ -11,10 +11,10 @@ import static com.netherbyte.pizzashopsimulator.SharedConstants.ID;
 public class Items {
     private static final Logger logger = LoggerFactory.getLogger(Items.class);
 
-    public static final Ingredient DOUGH = new Dough();
-    public static final Ingredient SAUCE = new Sauce();
-    public static final Ingredient CHEESE = new Cheese();
-    public static final Ingredient PEPPERONI = new Pepperoni();
+    public static final Ingredient DOUGH = new Ingredient();
+    public static final Ingredient SAUCE = new Ingredient();
+    public static final Ingredient CHEESE = new Ingredient();
+    public static final Ingredient PEPPERONI = new Ingredient();
 
     public static void register() {
         logger.info("Registering items");

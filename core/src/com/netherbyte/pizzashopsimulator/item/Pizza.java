@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Pizza {
     private List<Ingredient> ingredients;
+    private float cookTime;
 
     public Pizza() {
         ingredients = new ArrayList<>();
+        cookTime = 0;
     }
 
     public List<Ingredient> getIngredients() {
@@ -32,5 +34,17 @@ public class Pizza {
 
     public int getIngredientStackSize() {
         return ingredients.size();
+    }
+
+    public float getCookTime() {
+        return cookTime;
+    }
+
+    public void addCookTime(float time) {
+        cookTime += time;
+    }
+
+    public void resetCookTime() {
+        cookTime = 0;
     }
 }

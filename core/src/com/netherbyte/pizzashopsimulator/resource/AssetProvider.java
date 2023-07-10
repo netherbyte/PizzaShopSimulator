@@ -6,12 +6,20 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.netherbyte.pizzashopsimulator.registry.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AssetProvider {
+    private static final Logger logger = LoggerFactory.getLogger(AssetProvider.class);
+
     public static Texture getTexture(Identifier identifier) {
         try {
             return new Texture("assets/" + identifier.group + "/textures/" + identifier.key + ".png");
         } catch (GdxRuntimeException e) {
+
             Pixmap pixmap = new Pixmap(16, 16, Pixmap.Format.RGB888);
             pixmap.setColor(Color.BLACK);
             pixmap.fill();
@@ -22,5 +30,14 @@ public class AssetProvider {
 
             return new Texture(pixmap);
         }
+    }
+
+    public static boolean isMissing(Identifier identifier) {
+        try {
+            new Texture("assets/" + identifier.group + "/textures/" + identifier.key + ".png");
+        } catch (GdxRuntimeException e) {
+            return true;
+        }
+        return false;
     }
 }

@@ -4,17 +4,27 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.netherbyte.pizzashopsimulator.client.GuiManager;
+import com.netherbyte.pizzashopsimulator.client.block.BlockState;
+import com.netherbyte.pizzashopsimulator.client.block.Blocks;
 import com.netherbyte.pizzashopsimulator.client.gui.overlay.HudOverlay;
 import com.netherbyte.pizzashopsimulator.client.gui.overlay.IngredientsOverlay;
 import com.netherbyte.pizzashopsimulator.client.gui.renderers.PizzaRenderer;
 import com.netherbyte.pizzashopsimulator.item.Items;
 import com.netherbyte.pizzashopsimulator.item.Pizza;
+import com.netherbyte.pizzashopsimulator.registry.Registries;
+import com.netherbyte.pizzashopsimulator.resource.AssetProvider;
 import com.netherbyte.pizzashopsimulator.save.Save;
 import com.netherbyte.pizzashopsimulator.save.Saves;
 import com.netherbyte.pizzashopsimulator.util.PointerUtil;
+import com.netherbyte.pizzashopsimulator.util.PosUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.badlogic.gdx.Gdx.gl;
 import static com.badlogic.gdx.graphics.GL20.GL_COLOR_BUFFER_BIT;
@@ -22,6 +32,8 @@ import static com.netherbyte.pizzashopsimulator.SharedConstants.DEFAULT_HEIGHT;
 import static com.netherbyte.pizzashopsimulator.SharedConstants.DEFAULT_WIDTH;
 
 public class GameScreen implements Screen {
+    private static final Logger logger = LoggerFactory.getLogger(GameScreen.class);
+
     private GuiManager game;
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -30,6 +42,8 @@ public class GameScreen implements Screen {
     private IngredientsOverlay ingredientsOverlay;
 
     private Pizza currentPizza;
+
+    private Pizza ovenContent = null;
 
     public GameScreen(GuiManager game) {
         this.game = game;
@@ -70,12 +84,38 @@ public class GameScreen implements Screen {
         var cb = ingredientsOverlay.checkButtons();
         if (cb != null) currentPizza.addIngredient(cb);
 
+        Vector2 pizzaSize = PizzaRenderer.getDimensions(currentPizza, viewport, game.batch);
+        float pizzaScale = 2f;
+        Vector2 pizzaPos = PosUtil.center(viewport, pizzaSize.x * pizzaScale, pizzaSize.y * pizzaScale);
+        //logger.info(pizzaSize.toString());
+        if (ovenContent == null) PizzaRenderer.render(currentPizza, viewport, game.batch, pizzaPos.x, pizzaPos.y, pizzaScale);
+
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
 
-        game.batch.end();
+        //logger.info((PointerUtil.getX() - (DEFAULT_WIDTH / 2)) + " : " + ((PointerUtil.getY() - (DEFAULT_HEIGHT / 2)) * -1));
+        //logger.info(PointerUtil.getX(viewport) + " : " + PointerUtil.getY(viewport));
 
-        PizzaRenderer.render(currentPizza, viewport, game.batch, DEFAULT_WIDTH / 2f, DEFAULT_HEIGHT / 2f, 2f);
+        if (PointerUtil.checkHitbox(
+                pizzaPos.x - (pizzaSize.x * pizzaScale / 2),
+                pizzaPos.y - (pizzaSize.y * pizzaScale / 2),
+                pizzaPos.x + (pizzaSize.x * pizzaScale ),
+                pizzaPos.y + (pizzaSize.y * pizzaScale )
+        ) && PointerUtil.isButtonJustPressed(0) && ovenContent == null) {
+            ovenContent = currentPizza;
+        }
+
+        Image oven;
+        if (ovenContent != null) {
+            oven = new Image(AssetProvider.getTexture(BlockState.ofBlock(Blocks.OVEN, "on")));
+        } else {
+            oven = new Image(AssetProvider.getTexture(BlockState.ofBlock(Blocks.OVEN, "off")));
+
+        }
+        oven.draw(game.batch, 1f);
+
+
+        game.batch.end();
     }
 
     /**
