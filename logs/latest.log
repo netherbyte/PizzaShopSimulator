@@ -1,19 +1,16 @@
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Creating new window
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LWJGL 3.3.2+13
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LibGDX 1.12.0
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Starting Pizza Shop Simulator 1.1.0-dev.1
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registries) Initializing registries
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registries) Initialized registries
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.item.Items) Registering items
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:dough
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:sauce
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:cheese
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:pepperoni
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.client.block.Blocks) Registering blocks
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:oven
-[14:50:25] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Initialization stage complete
-[14:50:25] [Game/INFO] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Beginning post initialization stage
-[14:50:25] [Game/WARN] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Missing texture: pizzashopsimulator:oven (Not checking for block states)
-[14:50:25] [Game/INFO] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Post initialization stage complete
-[14:51:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Shutdown) Shutting down
-[14:51:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Shutdown) Game has been shut down
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Creating new window
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LWJGL 3.3.2+13
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Desktop) Using LibGDX 1.12.0
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Starting Pizza Shop Simulator 1.1.0-dev.1
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registries) Initializing registries
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registries) Initialized registries
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.item.Items) Registering items
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:dough
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:sauce
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:cheese
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:pepperoni
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.block.Blocks) Registering blocks
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.registry.Registry) Adding registry object: pizzashopsimulator:oven
+[15:01:06] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Initialization stage complete
+[15:01:07] [main/INFO] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Beginning post initialization stage
+[15:01:07] [main/WARN] (com.netherbyte.pizzashopsimulator.client.main.Initializer) Missing texture: pizzashopsimulator:oven (Not checking for block states)

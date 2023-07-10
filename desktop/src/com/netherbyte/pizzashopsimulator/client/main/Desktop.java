@@ -23,18 +23,7 @@ public class Desktop {
 		config.setWindowedMode(DesktopLauncherConfig.CONFIG.width(), DesktopLauncherConfig.CONFIG.height());
 		config.setTitle(DesktopLauncherConfig.CONFIG.title());
 		if (Initializer.init()) {
-			Thread game = new Thread("Game") {
-				@Override
-				public void run() {
-					new Lwjgl3Application(new GuiManager(), config);
-				}
-			};
-			game.start();
-			try {
-				game.join();
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
+			new Lwjgl3Application(new GuiManager(), config);
 			Shutdown.shutdown();
 		} else {
 			throw new InitializationException("Failed to initialize game");
