@@ -20,7 +20,7 @@ jobs:
   build:
     strategy:
       matrix:
-        java-version: ['17', '18', '19', '20']
+        java-version: ['17', '18']
 
     runs-on: ubuntu-latest
 
