@@ -10,9 +10,9 @@ import static com.netherbyte.pizzashopsimulator.SharedConstants.NAME;
 public class OSUtil extends SystemUtil {
     private static final Logger logger = LoggerFactory.getLogger(OSUtil.class);
 
-    public static final Version OSVERREQ_WIN = Version.parse("10.0");
-    public static final Version OSVERREQ_MAC = Version.parse("11.7.7");
-    public static final Version OSVERREQ_LIN = Version.parse("4.14.316");
+    public static final Version OSVERREQ_WIN = Version.parse("10");
+    public static final Version OSVERREQ_MAC = Version.parse("11");
+    public static final Version OSVERREQ_LIN = Version.parse("4.14");
 
     public static String getApplicationStorageDirectory() {
         if (OS_NAME == null) {
