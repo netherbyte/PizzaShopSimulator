@@ -1,5 +1,7 @@
 package com.netherbyte.pizzashopsimulator.client.resource;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -55,5 +57,13 @@ public class AssetProvider {
             return true;
         }
         return false;
+    }
+
+    public static FileHandle getSound(Identifier identifier) {
+        try {
+            return Gdx.files.internal("assets/" + identifier.group + "/sounds/" + identifier.key + ".wav");
+        } catch (GdxRuntimeException e) {
+            return null;
+        }
     }
 }

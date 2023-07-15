@@ -1,4 +1,4 @@
-package com.netherbyte.pizzashopsimulator.client.block;
+package com.netherbyte.pizzashopsimulator.block;
 
 import com.netherbyte.pizzashopsimulator.registry.Identifier;
 import com.netherbyte.pizzashopsimulator.registry.Registries;

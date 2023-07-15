@@ -19,12 +19,20 @@ public class Save {
         return sales;
     }
 
+    public void addSale() {
+        this.sales++;
+    }
+
     public void setSales(int sales) {
         this.sales = sales;
     }
 
     public float getCash() {
         return cash;
+    }
+
+    public void addCash(float cash) {
+        this.cash += cash;
     }
 
     public void setCash(float cash) {

@@ -1,7 +1,7 @@
 package com.netherbyte.pizzashopsimulator.registry;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.netherbyte.pizzashopsimulator.client.block.Block;
+import com.badlogic.gdx.audio.Sound;
+import com.netherbyte.pizzashopsimulator.block.Block;
 import com.netherbyte.pizzashopsimulator.item.Ingredient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import java.util.List;
 public class Registries {
     private static final Logger logger = LoggerFactory.getLogger(Registries.class);
 
-    public static final List<SimpleRegistry> REGISTRIES = new ArrayList<>();
+    public static final List<SimpleRegistry<?>> REGISTRIES = new ArrayList<>();
 
     public static final SimpleRegistry<Ingredient> INGREDIENTS = new SimpleRegistry<>();
     public static final SimpleRegistry<Block> BLOCKS = new SimpleRegistry<>();

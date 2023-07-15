@@ -14,6 +14,8 @@ public class OSUtil extends SystemUtil {
     public static final Version OSVERREQ_MAC = Version.parse("11");
     public static final Version OSVERREQ_LIN = Version.parse("4.14");
 
+    public static final Version OS_VERSION = Version.parse(System.getProperty("os.version").toLowerCase().split("-")[0]);
+
     public static String getApplicationStorageDirectory() {
         if (OS_NAME == null) {
             logger.error("Failed to get OS name");

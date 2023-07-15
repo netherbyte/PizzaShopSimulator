@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.netherbyte.pizzashopsimulator.client.GuiManager;
-import com.netherbyte.pizzashopsimulator.client.block.BlockState;
-import com.netherbyte.pizzashopsimulator.client.block.Blocks;
+import com.netherbyte.pizzashopsimulator.block.BlockState;
+import com.netherbyte.pizzashopsimulator.block.Blocks;
 import com.netherbyte.pizzashopsimulator.client.gui.overlay.HudOverlay;
 import com.netherbyte.pizzashopsimulator.client.gui.overlay.IngredientsOverlay;
 import com.netherbyte.pizzashopsimulator.client.gui.renderers.PizzaRenderer;
@@ -18,6 +18,9 @@ import com.netherbyte.pizzashopsimulator.item.Pizza;
 import com.netherbyte.pizzashopsimulator.client.resource.AssetProvider;
 import com.netherbyte.pizzashopsimulator.save.Save;
 import com.netherbyte.pizzashopsimulator.save.Saves;
+import com.netherbyte.pizzashopsimulator.sound.SoundManager;
+import com.netherbyte.pizzashopsimulator.sound.Sounds;
+import com.netherbyte.pizzashopsimulator.util.OvenManager;
 import com.netherbyte.pizzashopsimulator.util.PointerUtil;
 import com.netherbyte.pizzashopsimulator.util.PosUtil;
 import org.slf4j.Logger;
@@ -41,6 +44,10 @@ public class GameScreen implements Screen {
     private Pizza currentPizza;
 
     private Pizza ovenContent = null;
+    private float pizzaCookTime = 0.0f;
+    private float maxPizzaCookTime = 15.0f;
+    private boolean ovenDone = false;
+    private boolean ovenSoundPlayed = false;
 
     public GameScreen(GuiManager game) {
         this.game = game;
@@ -105,11 +112,25 @@ public class GameScreen implements Screen {
         Image oven;
         if (ovenContent != null) {
             oven = new Image(AssetProvider.getTexture(BlockState.ofBlock(Blocks.OVEN, "on")));
+            pizzaCookTime += game.delta();
         } else {
             oven = new Image(AssetProvider.getTexture(BlockState.ofBlock(Blocks.OVEN, "off")));
-
         }
         oven.draw(game.batch, 1f);
+
+        if (pizzaCookTime >= maxPizzaCookTime && !ovenSoundPlayed) {
+            ovenDone = true;
+            SoundManager.play(Sounds.OVEN_TIMER_DONE, 1.0f, 1.0f, 0.0f);
+            ovenSoundPlayed = true;
+        }
+
+        if (OvenManager.isOvenJustClicked(0) && ovenDone) {
+            Saves.getCurrentSave().addSale();
+            Saves.getCurrentSave().addCash(ovenContent.getIngredientStackSize());
+            ovenContent = null;
+            ovenDone = false;
+            ovenSoundPlayed = false;
+        }
 
 
         game.batch.end();

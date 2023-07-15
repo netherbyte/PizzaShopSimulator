@@ -1,7 +1,7 @@
 package com.netherbyte.pizzashopsimulator.client.main;
 
 import com.netherbyte.pizzashopsimulator.PizzaShopSimulatorVersion;
-import com.netherbyte.pizzashopsimulator.client.block.Blocks;
+import com.netherbyte.pizzashopsimulator.block.Blocks;
 import com.netherbyte.pizzashopsimulator.item.Items;
 import com.netherbyte.pizzashopsimulator.registry.Identifier;
 import com.netherbyte.pizzashopsimulator.registry.Registries;
@@ -30,7 +30,7 @@ public class Initializer {
 				throw new InitializationException("Operating system is incompatible. This game requires MacOS " + OSUtil.OSVERREQ_MAC.getFormattedName() + ". You are using MacOS " + OSUtil.OS_VERSION.getFormattedName());
 			}
 		} else if (OSUtil.OS_NAME.contains("linux")) {
-			if (!Version.Math.isCompatible(OSUtil.OSVERREQ_LIN, OSUtil.OS_VERSION)) {
+			if (Version.Math.isCompatible(OSUtil.OSVERREQ_LIN, OSUtil.OS_VERSION)) {
 				throw new InitializationException("Operating system is incompatible. This game requires Linux Kernel " + OSUtil.OSVERREQ_LIN.getFormattedName() + ". You are using Linux Kernel " + OSUtil.OS_VERSION.getFormattedName());
 			}
 		} else {
@@ -48,11 +48,11 @@ public class Initializer {
 	public static void postInit() {
 		logger.info("Beginning post initialization stage");
 
-		for (SimpleRegistry registry : Registries.REGISTRIES) {
+		for (SimpleRegistry<?> registry : Registries.REGISTRIES) {
 			var ids = registry.getIdentifierList();
-			for (int i = 0; i < ids.size(); i++) {
-				Identifier id = (Identifier) ids.get(i);
-				if (AssetProvider.isTextureMissing(id)) logger.warn("Missing texture: " + id + " (Not checking for block states)");
+			for (Identifier identifier : ids) {
+				if (AssetProvider.isTextureMissing(identifier))
+					logger.warn("Missing texture: " + identifier + " (Not checking for block states)");
 			}
 		}
 
