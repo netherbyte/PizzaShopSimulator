@@ -29,6 +29,7 @@ class MainActivity extends FlxState {
 	static var sauceIcon:FlxSprite;
 	static var cheeseIcon:FlxSprite;
 	static var pepperoniIcon:FlxSprite;
+	static var sausageIcon:FlxSprite;
 	static var tutorialArrow:FlxText;
 
 	static var draggable:FlxSprite; // currently with a single cursor you can only drag one at a time so there is no point in having a draggable sprite for each ingredient
@@ -132,22 +133,26 @@ class MainActivity extends FlxState {
 		orderDescLine2.visible = true;
 
 		// ingridients hud
-		sauceIcon = new FlxSprite(0, 0, Resources.Sauce__png);
+		sauceIcon = new FlxSprite(0, 0, "res/images/Sauce.png");
 		sauceIcon.y = ((FlxG.height / 2) - (sauceIcon.height / 2));
 		sauceIcon.y -= sauceIcon.height / 1.5;
 		add(sauceIcon);
-		doughIcon = new FlxSprite(0, 0, Resources.UncookedDough__png);
+		doughIcon = new FlxSprite(0, 0, "res/images/UncookedDough.png");
 		doughIcon.y = ((FlxG.height / 2) - (doughIcon.height / 2));
 		doughIcon.y -= doughIcon.height * 2;
 		add(doughIcon);
-		cheeseIcon = new FlxSprite(0, 0, Resources.Cheese__png);
+		cheeseIcon = new FlxSprite(0, 0, "res/images/Cheese.png");
 		cheeseIcon.y = ((FlxG.height / 2) - (cheeseIcon.height / 2));
 		cheeseIcon.y += cheeseIcon.height / 1.5;
 		add(cheeseIcon);
-		pepperoniIcon = new FlxSprite(0, 0, Resources.UncookedPepperoni__png);
+		pepperoniIcon = new FlxSprite(0, 0, "res/images/UncookedPepperoni.png");
 		pepperoniIcon.y = ((FlxG.height / 2) - (pepperoniIcon.height / 2));
 		pepperoniIcon.y += pepperoniIcon.height * 2;
 		add(pepperoniIcon);
+		sausageIcon = new FlxSprite(0, 0, "res/images/sausage.png");
+		sausageIcon.y = ((FlxG.height / 2) - (sausageIcon.height / 2));
+		sausageIcon.y += sausageIcon.height * 3;
+		add(sausageIcon);
 		tutorialArrow = new FlxText(0, 0, 0, "<-").setFormat(Reference.FONT, 24, FlxColor.BLACK, CENTER);
 		tutorialArrow.x = sauceIcon.width;
 		tutorialArrow.y = doughIcon.y;
@@ -194,7 +199,7 @@ class MainActivity extends FlxState {
 		cookIndicator.y = oven.y - cookIndicator.height * 2;
 		add(cookIndicator);
 
-		currentPizza.topping = new FlxSprite(0, 0, Resources.UncookedPepperoni__png);
+		currentPizza.topping = new FlxSprite(0, 0);
 		currentPizza.topping.visible = false;
 		add(currentPizza.topping);
 
@@ -280,7 +285,7 @@ class MainActivity extends FlxState {
 
 		if (FlxG.mouse.overlaps(pepperoniIcon) && FlxG.mouse.justPressed) {
 			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == CHEESE) {
-				// currentPizza.topping = new FlxSprite(0, 0, Resources.UncookedPepperoni__png);
+				currentPizza.topping.loadGraphic("res/images/UncookedPepperoni.png");
 				currentPizza.topping.screenCenter(XY);
 				currentPizza.topping.x += 48;
 				currentPizza.topping.y += 32;
@@ -289,6 +294,21 @@ class MainActivity extends FlxState {
 				dragHereHint.text = Text.translatable("tutorial.movepizza");
 				dragHereHint.screenCenter(X);
 				currentPizza.meta.topping = PEPPERONI;
+				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
+			}
+		}
+
+		if (FlxG.mouse.overlaps(sausageIcon) && FlxG.mouse.justPressed) {
+			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == CHEESE) {
+				currentPizza.topping.loadGraphic("res/images/sausage.png");
+				currentPizza.topping.screenCenter(XY);
+				currentPizza.topping.x += 48;
+				currentPizza.topping.y += 32;
+				currentPizza.topping.visible = true;
+				tutorialArrow.visible = false;
+				dragHereHint.text = Text.translatable("tutorial.movepizza");
+				dragHereHint.screenCenter(X);
+				currentPizza.meta.topping = SAUSAGE;
 				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
 			}
 		}
@@ -352,7 +372,7 @@ class MainActivity extends FlxState {
 				SessionStorage.totalSales++;
 				SessionStorage.totalRevenue += SessionStorage.cheesePizzaPrice;
 				SessionStorage.totalRevenue += order.tip;
-				if (order.topping == PEPPERONI) {
+				if (order.topping == PEPPERONI || order.topping == SAUSAGE) {
 					SessionStorage.totalRevenue += SessionStorage.pricePerTopping;
 				}
 				SessionStorage.saveDataToJSON();

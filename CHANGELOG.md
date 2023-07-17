@@ -2,7 +2,8 @@
 
 ## Additions
 
-- Added language translation support with selection screen (See TRANSLATIONS.md for details)
+- Language translation support with selection screen (See TRANSLATIONS.md for details)
+- Sausage topping
 
 ## Changes
 
