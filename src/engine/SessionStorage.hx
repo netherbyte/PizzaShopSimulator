@@ -18,12 +18,14 @@ class SessionStorage {
 	public static var cheesePizzaPrice:Float = 16.0;
 	public static var pricePerTopping:Float = 4.0;
 	public static var volume:Float = 1.0;
+	public static var language:String = "en_us";
 
 	public static function initJSONStorage() {
 		var jsonData = Json.stringify({
 			version: GameVersion.CURRENT.getSaveVersion(),
 			tutorialFinished: tutorialCompleted,
 			volume: volume,
+			language: "en_us",
 			shop: {
 				name: shopName,
 				basePrice: cheesePizzaPrice,
@@ -65,6 +67,7 @@ class SessionStorage {
 		cheesePizzaPrice = json.shop.basePrice;
 		pricePerTopping = json.shop.toppingPrice;
 		volume = json.volume;
+		language = json.language;
 		if (shopName == "") {
 			trace("Data loaded however it is empty");
 		} else {
@@ -82,6 +85,7 @@ class SessionStorage {
 			version: GameVersion.CURRENT.getSaveVersion(),
 			tutorialFinished: tutorialCompleted,
 			volume: volume,
+			language: language,
 			shop: {
 				name: shopName,
 				basePrice: cheesePizzaPrice,

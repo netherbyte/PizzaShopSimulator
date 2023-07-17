@@ -24,7 +24,10 @@ class Text {
 	}
 
 	public static function loadTranslations() {
-		var path = Path.join([System.applicationDirectory + "res/translations/" + Reference.LANGUAGE + ".txt"]);
+		var path = Path.join([
+			System.applicationDirectory,
+			"res/translations/" + Reference.getLanguage() + ".txt"
+		]);
 		var content = File.getContent(path);
 		var lines = content.split("\n");
 		for (line in lines) {
