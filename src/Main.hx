@@ -19,6 +19,7 @@ class Main extends Sprite {
 		SessionStorage.loadDataFromJSON();
 		Lib.current.addChild(new FlxGame(0, 0, MenuState, 60, 60, true, false));
 		Lib.current.addChild(new FPS(10, 20, 0x000000));
+		FlxG.autoPause = false;
 	}
 
 	public static function playMainMusic() {

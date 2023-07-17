@@ -2,12 +2,13 @@
 
 ## Additions
 
-- Language translation support with selection screen (See TRANSLATIONS.md for details)
+- Language translation support with selection screen
 - Sausage topping
 
-## Changes
+## Removals
 
 - Removed default flixel cursor
+- Removed the focus-lost screen
 
 ## Fixes
 
