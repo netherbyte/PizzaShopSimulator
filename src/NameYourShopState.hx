@@ -24,6 +24,8 @@ class NameYourShopState extends FlxState {
 	static var volumeField:FlxInputText;
 	static var volumeLabel:FlxText;
 
+	static var languageSelector:FlxText;
+
 	public function new(bp:Bool) {
 		super();
 		bypass = bp;
@@ -77,6 +79,11 @@ class NameYourShopState extends FlxState {
 		volumeLabel.y = volumeField.y - volumeLabel.height;
 		add(volumeLabel);
 
+		languageSelector = new FlxText(0, 0, 0, Text.translatable("menu.languageselector")).setFormat(Reference.FONT, 36, 0xFFFFFFFF, CENTER);
+		languageSelector.y = FlxG.height - languageSelector.height;
+		languageSelector.x = FlxG.width - languageSelector.width;
+		add(languageSelector);
+
 		// Main.kitchenMusic.pause();
 		// Main.menuMusic.resume();
 	}
@@ -97,6 +104,10 @@ class NameYourShopState extends FlxState {
 			}
 		} else {
 			nextButton.color = FlxColor.fromInt(0xFFFFFFFF);
+		}
+
+		if (FlxG.mouse.overlaps(languageSelector) && FlxG.mouse.justPressed) {
+			FlxG.switchState(new LanguageSelectState());
 		}
 	}
 }

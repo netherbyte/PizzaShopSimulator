@@ -1,8 +1,9 @@
 # Translation Progress
 
-| Language | Code | % Completed |
-|----------|------|-------------|
-| US English | en_us | 100% |
+| Language         | Code  | % Completed |
+| ---------------- | ----- | ----------- |
+| American English | en_us | 100%        |
+| Indian English   | en_in | 100%        |
 
 # How to contribute
 

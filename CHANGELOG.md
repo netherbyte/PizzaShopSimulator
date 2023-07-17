@@ -2,7 +2,7 @@
 
 ## Additions
 
-- Added language translation support (See TRANSLATIONS.md for details)
+- Added language translation support with selection screen (See TRANSLATIONS.md for details)
 
 ## Changes
 

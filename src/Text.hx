@@ -24,6 +24,8 @@ class Text {
 	}
 
 	public static function loadTranslations() {
+		translationsK = [];
+		translationsV = [];
 		var path = Path.join([
 			System.applicationDirectory,
 			"res/translations/" + Reference.getLanguage() + ".txt"
