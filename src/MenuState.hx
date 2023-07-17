@@ -37,7 +37,7 @@ class MenuState extends FlxState
 		titleText.y -= FlxG.height / 3.5;
 		add(titleText);
 
-		playButton = new FlxText(0, 0, 0, "Play!").setFormat(Reference.FONT, 96, FlxColor.fromInt(0xFFFFFFFF), FlxTextAlign.CENTER);
+		playButton = new FlxText(0, 0, 0, Text.translatable("menu.play")).setFormat(Reference.FONT, 96, FlxColor.fromInt(0xFFFFFFFF), FlxTextAlign.CENTER);
 		playButton.screenCenter(XY);
 		add(playButton);
 
@@ -57,7 +57,7 @@ class MenuState extends FlxState
 			{
 				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
 				playButton.color = FlxColor.fromInt(0xFF7F7F7F);
-				if (SessionStorage.shopName == null || SessionStorage.shopName == "Click here to type") {
+				if (SessionStorage.shopName == "" || SessionStorage.shopName == "Click here to type") {
 					FlxG.switchState(new NameYourShopState(false));
 				} else {
 					FlxG.switchState(new MainActivity());

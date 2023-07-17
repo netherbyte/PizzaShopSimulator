@@ -1,5 +1,9 @@
 # 1.1.0 Changelog
 
+## Additions
+
+- Added language translation support (See TRANSLATIONS.md for details)
+
 ## Changes
 
 - Removed default flixel cursor

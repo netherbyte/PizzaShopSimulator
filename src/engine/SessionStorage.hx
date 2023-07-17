@@ -11,7 +11,7 @@ import sys.io.File;
 
 class SessionStorage
 {
-	public static var shopName:String = "";
+	public static var shopName:String = "Unnamed Shop";
 	public static var netWorth:Float = 0.0;
 	public static var totalRevenue:Float = 0.0;
 	public static var totalSales:Int = 0;
@@ -23,7 +23,7 @@ class SessionStorage
 	public static function initJSONStorage()
 	{
 		var jsonData = Json.stringify({
-			version: 1,
+			version: GameVersion.CURRENT.getSaveVersion(),
 			tutorialFinished: tutorialCompleted,
 			volume: volume,
 			shop: {
@@ -87,7 +87,7 @@ class SessionStorage
 		var fp = Path.join([System.applicationStorageDirectory, "data.json"]);
 		#if sys
 		var json = Json.stringify({
-			version: 1,
+			version: GameVersion.CURRENT.getSaveVersion(),
 			tutorialFinished: tutorialCompleted,
 			volume: volume,
 			shop: {

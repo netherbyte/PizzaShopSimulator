@@ -12,6 +12,8 @@ class OrderChecker
 		{
 			case PEPPERONI:
 				topping1 = PEPPERONI;
+			case SAUSAGE:
+				topping1 = SAUSAGE;
 			case NONE:
 				topping1 = NONE;
 		}

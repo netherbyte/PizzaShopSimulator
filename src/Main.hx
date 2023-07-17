@@ -15,7 +15,9 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		Text.loadTranslations();
 		SessionStorage.initJSONStorage();
+		SessionStorage.loadDataFromJSON();
 		Lib.current.addChild(new FlxGame(0, 0, MenuState, 60, 60, true, false));
 		Lib.current.addChild(new FPS(10, 20, 0x000000));
 	}

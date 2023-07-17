@@ -12,6 +12,7 @@ import openfl.Lib;
 import openfl.display.FPS;
 
 using Toppings;
+using StringTools;
 
 class MainActivity extends FlxState
 {
@@ -81,29 +82,29 @@ class MainActivity extends FlxState
 		lastIngredientAdded = null;
 		freezeWorkspace = false;
 
-		titleText = new FlxText(0, 0, 0, "Loading shop name...").setFormat(Reference.FONT, 16, FlxColor.BLACK, CENTER);
+		titleText = new FlxText(0, 0, 0, Text.translatable("shop.name.loading")).setFormat(Reference.FONT, 16, FlxColor.BLACK, CENTER);
 		try
 		{
-			titleText.text = SessionStorage.shopName + "'s kitchen";
+			titleText.text = SessionStorage.shopName + Text.translatable("kitchen.suffix");
 		}
 		catch (error)
 		{
-			titleText.text = "Failed to load shop name";
+			titleText.text = Text.translatable("shop.name.error");
 		}
 		add(titleText);
 
 		// order hud will be invisible until there is an order
 		// for testing, we will create an order at the beginning of the game
-		orderNotifyTitle = new FlxText(0, 0, 0, "New Order!").setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
+		orderNotifyTitle = new FlxText(0, 0, 0, Text.translatable("order.new")).setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
 		orderNotifyTitle.x = FlxG.width - orderNotifyTitle.width;
 		orderNotifyTitle.visible = false;
 		add(orderNotifyTitle);
-		orderDescLine1 = new FlxText(0, 0, 0, "Summary").setFormat(Reference.FONT, 24, FlxColor.BLACK, CENTER);
+		orderDescLine1 = new FlxText(0, 0, 0, Text.translatable("order.summary")).setFormat(Reference.FONT, 24, FlxColor.BLACK, CENTER);
 		orderDescLine1.x = FlxG.width - orderDescLine1.width;
 		orderDescLine1.y = orderNotifyTitle.height;
 		orderDescLine1.visible = false;
 		add(orderDescLine1);
-		orderDescLine2 = new FlxText(0, 0, 0, "Summary").setFormat(Reference.FONT, 24, FlxColor.BLACK, CENTER);
+		orderDescLine2 = new FlxText(0, 0, 0, Text.translatable("order.summary")).setFormat(Reference.FONT, 24, FlxColor.BLACK, CENTER);
 		orderDescLine2.x = FlxG.width - orderDescLine2.width;
 		orderDescLine2.y = orderDescLine1.y + orderDescLine1.height;
 		orderDescLine2.visible = false;
@@ -122,13 +123,15 @@ class MainActivity extends FlxState
 			}
 		}
 
-		orderDescLine1.text = "Order from " + order.customerName;
+		orderDescLine1.text = Text.translatable("order.from") + " " + order.customerName;
 		switch (order.topping)
 		{
 			case NONE:
-				orderDescLine2.text = "Cheese pizza";
+				orderDescLine2.text = Text.translatable("pizza.cheese");
 			case PEPPERONI:
-				orderDescLine2.text = "Pepperoni pizza";
+				orderDescLine2.text = Text.translatable("pizza.pepperoni");
+			case SAUSAGE:
+				orderDescLine2.text = Text.translatable("pizza.sausage");
 		}
 		orderNotifyTitle.x = FlxG.width - orderNotifyTitle.width;
 		orderDescLine1.x = FlxG.width - orderDescLine1.width;
@@ -165,7 +168,7 @@ class MainActivity extends FlxState
 		add(tutorialArrow);
 
 		// work area
-		dragHereHint = new FlxText(0, 0, 0, "Click on the dough icon").setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
+		dragHereHint = new FlxText(0, 0, 0, Text.translatable("tutorial.clickdough")).setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
 		dragHereHint.screenCenter(XY);
 		dragHereHint.y -= dragHereHint.height * 4;
 		if (SessionStorage.tutorialCompleted)
@@ -191,13 +194,13 @@ class MainActivity extends FlxState
 		ovenRack.y = oven.y;
 		add(ovenRack);
 
-		finishTutorialButton = new FlxText(0, 0, 0, "Get started!").setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
+		finishTutorialButton = new FlxText(0, 0, 0, Text.translatable("tutorial.finished")).setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
 		finishTutorialButton.screenCenter(XY);
 		finishTutorialButton.y += FlxG.height / 4;
 		finishTutorialButton.visible = false;
 		add(finishTutorialButton);
 
-		cookIndicator = new FlxText(0, 0, 0, "error").setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
+		cookIndicator = new FlxText(0, 0, 0, Text.translatable("generic.error")).setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
 		cookIndicator.x = oven.x + (oven.width / 2 - cookIndicator.width / 2);
 		cookIndicator.y = oven.y - cookIndicator.height * 2;
 		add(cookIndicator);
@@ -207,12 +210,12 @@ class MainActivity extends FlxState
 		add(currentPizza.topping);
 
 		orderFeedback = new FlxText(0, 0, 0,
-			"Your customer, " + order.customerName + ", did not get what they ordered.").setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
+			Text.translatable("order.incorrect").replace("%c", order.customerName)).setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
 		orderFeedback.screenCenter(XY);
 		orderFeedback.y = FlxG.height - (orderFeedback.height * 3);
 		orderFeedback.visible = false;
 		add(orderFeedback);
-		acceptOrderFeedbackButton = new FlxText(0, 0, 0, "Next order").setFormat(Reference.FONT, 48, FlxColor.BLACK, CENTER);
+		acceptOrderFeedbackButton = new FlxText(0, 0, 0, Text.translatable("order.next")).setFormat(Reference.FONT, 48, FlxColor.BLACK, CENTER);
 		acceptOrderFeedbackButton.screenCenter(XY);
 		acceptOrderFeedbackButton.y = FlxG.height - acceptOrderFeedbackButton.height;
 		acceptOrderFeedbackButton.visible = false;
@@ -236,9 +239,10 @@ class MainActivity extends FlxState
 	public override function update(dt:Float)
 	{
 		super.update(dt);
-
-		salesIndicator.text = SessionStorage.totalSales + " sales";
-		revenueIndicator.text = SessionStorage.totalRevenue + " coins";
+		
+		titleText.text = SessionStorage.shopName + Text.translatable("kitchen.suffix");
+		salesIndicator.text = SessionStorage.totalSales + " " + Text.translatable("stats.sales");
+		revenueIndicator.text = SessionStorage.totalRevenue + " " + Text.translatable("stats.coins");
 		salesIndicator.screenCenter(X);
 		salesIndicator.x -= salesIndicator.width;
 		revenueIndicator.screenCenter(X);
@@ -255,7 +259,7 @@ class MainActivity extends FlxState
 			{
 				currentPizza.base.loadGraphic(Resources.UncookedDough__png);
 				currentPizza.base.visible = true;
-				dragHereHint.text = "Click on the sauce icon";
+				dragHereHint.text = Text.translatable("tutorial.clicksauce");
 				dragHereHint.screenCenter(X);
 				tutorialArrow.y = sauceIcon.y;
 				currentPizza.meta.composition.push(DOUGH);
@@ -269,7 +273,7 @@ class MainActivity extends FlxState
 			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == DOUGH)
 			{
 				currentPizza.base.loadGraphic(Resources.UncookedDoughWithSauce__png);
-				dragHereHint.text = "Click on the cheese icon";
+				dragHereHint.text = Text.translatable("tutorial.clickcheese");
 				dragHereHint.screenCenter(X);
 				tutorialArrow.y = cheeseIcon.y;
 				currentPizza.meta.composition.push(SAUCE);
@@ -283,7 +287,7 @@ class MainActivity extends FlxState
 			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == SAUCE)
 			{
 				currentPizza.base.loadGraphic(Resources.UncookedDoughWithSauceAndCheese__png);
-				dragHereHint.text = "Click on the pepperoni icon";
+				dragHereHint.text = Text.translatable("tutorial.clickpepperoni");
 				dragHereHint.screenCenter(X);
 				tutorialArrow.y = pepperoniIcon.y;
 				currentPizza.meta.topping = NONE;
@@ -303,7 +307,7 @@ class MainActivity extends FlxState
 				currentPizza.topping.y += 32;
 				currentPizza.topping.visible = true;
 				tutorialArrow.visible = false;
-				dragHereHint.text = "Now move your pizza to the oven by clicking on it";
+				dragHereHint.text = Text.translatable("tutorial.movepizza");
 				dragHereHint.screenCenter(X);
 				currentPizza.meta.topping = PEPPERONI;
 				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
@@ -320,7 +324,7 @@ class MainActivity extends FlxState
 			{
 				// currentPizza.base.visible = false;
 				// currentPizza.topping.visible = false;
-				dragHereHint.text = "Wait for your pizza to cook";
+				dragHereHint.text = Text.translatable("tutorial.ovenwait");
 				dragHereHint.screenCenter(X);
 				ovenRack.loadGraphic(Resources.ovenresized_5__png);
 				currentPizza.base.x = ovenRack.x + ovenRack.width / 4;
@@ -339,7 +343,7 @@ class MainActivity extends FlxState
 		if (pizzaInOven)
 		{
 			cookTime += dt;
-			dragHereHint.text = "Your pizza is cooking (" + Math.round(maxCookTime - cookTime) + ")";
+			dragHereHint.text = Text.translatable("tutorial.cooking").replace("%t", Math.round(maxCookTime - cookTime) + "");
 			dragHereHint.screenCenter(X);
 			cookIndicator.visible = true;
 			cookIndicator.text = "" + Math.round(maxCookTime - cookTime);
@@ -353,13 +357,13 @@ class MainActivity extends FlxState
 		{
 			pizzaInOven = false;
 			ovenRack.loadGraphic(Resources.ovenresized_1__png);
-			dragHereHint.text = "Your pizza is done! Now try it without any hints.";
+			dragHereHint.text = Text.translatable("tutorial.done");
 			dragHereHint.screenCenter(X);
 			finishTutorialButton.visible = true;
 			cookTime = 0;
 			if (SessionStorage.tutorialCompleted)
 			{
-				finishTutorialButton.text = "Deliver Order";
+				finishTutorialButton.text = Text.translatable("order.deliver");
 			}
 			// currentPizza.base.visible = true;
 			// currentPizza.topping.visible = true;

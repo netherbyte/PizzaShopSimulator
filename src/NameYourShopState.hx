@@ -41,20 +41,20 @@ class NameYourShopState extends FlxState
 			FlxG.switchState(new MainActivity());
 		}
 
-		titleText = new FlxText(0, 0, 0, "Name your shop:").setFormat(Reference.FONT, 72, FlxColor.fromInt(0xFFFFFFFF), FlxTextAlign.CENTER);
+		titleText = new FlxText(0, 0, 0, Text.translatable("prep.nameshop")).setFormat(Reference.FONT, 72, FlxColor.fromInt(0xFFFFFFFF), FlxTextAlign.CENTER);
 		titleText.screenCenter(X);
 		add(titleText);
 
-		textInputField = new FlxInputText(0, 0, FlxG.width, "Click here to type", 48);
+		textInputField = new FlxInputText(0, 0, FlxG.width, Text.translatable("generic.clicktotype"), 48);
 		textInputField.screenCenter(XY);
 		add(textInputField);
 
-		nextButton = new FlxText(0, 0, 0, "Confirm").setFormat(Reference.FONT, 36, FlxColor.WHITE, CENTER);
+		nextButton = new FlxText(0, 0, 0, Text.translatable("generic.confirm")).setFormat(Reference.FONT, 36, FlxColor.WHITE, CENTER);
 		nextButton.screenCenter(X);
 		nextButton.y = FlxG.height - (titleText.y + titleText.height);
 		add(nextButton);
 
-		basePriceText = new FlxText(0, 0, 0, "Pizza Price").setFormat(Reference.FONT, 36);
+		basePriceText = new FlxText(0, 0, 0, Text.translatable("prep.pizzaprice")).setFormat(Reference.FONT, 36);
 		basePriceText.screenCenter(XY);
 		basePriceText.y += FlxG.height / 4;
 		basePriceText.x -= FlxG.width / 4;
@@ -64,7 +64,7 @@ class NameYourShopState extends FlxState
 		basePriceField.x = basePriceText.x;
 		add(basePriceField);
 
-		toppingPriceText = new FlxText(0, 0, 0, "Topping Price").setFormat(Reference.FONT, 36);
+		toppingPriceText = new FlxText(0, 0, 0, Text.translatable("prep.toppingprice")).setFormat(Reference.FONT, 36);
 		toppingPriceText.screenCenter(XY);
 		toppingPriceText.y += FlxG.height / 4;
 		toppingPriceText.x += FlxG.width / 4;
@@ -77,7 +77,7 @@ class NameYourShopState extends FlxState
 		volumeField = new FlxInputText(0, 0, 150, "100", 32);
 		volumeField.y = FlxG.height - volumeField.height;
 		add(volumeField);
-		volumeLabel = new FlxText(0, 0, 0, "Volume %").setFormat(Reference.FONT, 16, 0xFFFFFFFF, CENTER);
+		volumeLabel = new FlxText(0, 0, 0, Text.translatable("config.volume")).setFormat(Reference.FONT, 16, 0xFFFFFFFF, CENTER);
 		volumeLabel.y = volumeField.y - volumeLabel.height;
 		add(volumeLabel);
 
