@@ -9,8 +9,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 
-class MenuState extends FlxState
-{
+class MenuState extends FlxState {
 	static var background:FlxSprite;
 
 	static var titleText:FlxSprite;
@@ -20,8 +19,7 @@ class MenuState extends FlxState
 	private static var playButtonColorLoopSpeed:Float = 2; // speed 1 is 0.25 seconds, linear
 	private static var playButtonColors:Array<Int> = [0xFFFF0000, 0xFF00FF00, 0xFF0000FF];
 
-	override public function create()
-	{
+	override public function create() {
 		super.create();
 
 		FlxG.mouse.useSystemCursor = true;
@@ -44,17 +42,14 @@ class MenuState extends FlxState
 		FlxG.sound.playMusic(Resources.newmenutheme__wav, 1 * SessionStorage.volume);
 	}
 
-	override public function update(elapsed:Float)
-	{
+	override public function update(elapsed:Float) {
 		super.update(elapsed);
 
 		playButtonColorTick += elapsed;
 
-		if (FlxG.mouse.overlaps(playButton))
-		{
+		if (FlxG.mouse.overlaps(playButton)) {
 			playButton.color = FlxColor.fromInt(0xFF000000);
-			if (FlxG.mouse.justPressed)
-			{
+			if (FlxG.mouse.justPressed) {
 				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
 				playButton.color = FlxColor.fromInt(0xFF7F7F7F);
 				if (SessionStorage.shopName == "" || SessionStorage.shopName == "Click here to type") {
@@ -63,19 +58,13 @@ class MenuState extends FlxState
 					FlxG.switchState(new MainActivity());
 				}
 			}
-		}
-		else
-		{
-			if (playButtonColorTick >= playButtonColorLoopSpeed / 4)
-			{
+		} else {
+			if (playButtonColorTick >= playButtonColorLoopSpeed / 4) {
 				playButtonColorTick = 0;
 				playButton.color = FlxColor.fromInt(playButtonColors[playButtonColorCycle]);
-				if (playButtonColorCycle == playButtonColors.length)
-				{
+				if (playButtonColorCycle == playButtonColors.length) {
 					playButtonColorCycle = 0;
-				}
-				else
-				{
+				} else {
 					playButtonColorCycle++;
 				}
 			}

@@ -2,14 +2,11 @@ package;
 
 using Toppings;
 
-class OrderChecker
-{
-	public static function verify(order:OrderDataStructure, creation:PizzaDataStructure):Bool
-	{
+class OrderChecker {
+	public static function verify(order:OrderDataStructure, creation:PizzaDataStructure):Bool {
 		var topping1;
 		var topping2;
-		switch (order.topping)
-		{
+		switch (order.topping) {
 			case PEPPERONI:
 				topping1 = PEPPERONI;
 			case SAUSAGE:
@@ -19,12 +16,9 @@ class OrderChecker
 		}
 		topping2 = creation.meta.topping;
 
-		if (topping1 == topping2)
-		{
+		if (topping1 == topping2) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}

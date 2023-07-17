@@ -1,7 +1,6 @@
 package;
 
-enum PizzaIngredients
-{
+enum PizzaIngredients {
 	DOUGH;
 	SAUCE;
 	CHEESE;

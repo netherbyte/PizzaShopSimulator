@@ -1,21 +1,16 @@
 package engine;
 
-typedef SessionDataStorageFileStructure =
-{
+typedef SessionDataStorageFileStructure = {
 	version:Int,
 	tutorialFinished:Bool,
 	volume:Float,
-	shop:
-	{
+	shop:{
 		name:String, basePrice:Float, toppingPrice:Float
 	},
-	economy:
-	{
-		self:
-		{
+	economy:{
+		self:{
 			nw:Float
-		}, shop:
-		{
+		}, shop:{
 			revenue:Float, sales:Int
 		}
 	}

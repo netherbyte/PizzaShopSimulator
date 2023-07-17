@@ -1,7 +1,6 @@
 package;
 
-typedef OrderDataStructure =
-{
+typedef OrderDataStructure = {
 	customerName:String,
 	topping:Toppings,
 	tip:Int

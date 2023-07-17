@@ -2,12 +2,10 @@ package;
 
 import flixel.FlxSprite;
 
-typedef PizzaDataStructure =
-{
+typedef PizzaDataStructure = {
 	base:FlxSprite,
 	topping:FlxSprite,
-	meta:
-	{
+	meta:{
 		topping:Toppings, composition:Array<PizzaIngredients>
 	}
 }

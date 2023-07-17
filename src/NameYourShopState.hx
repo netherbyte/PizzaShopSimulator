@@ -8,8 +8,7 @@ import flixel.addons.ui.FlxInputText;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 
-class NameYourShopState extends FlxState
-{
+class NameYourShopState extends FlxState {
 	static var titleText:FlxText;
 	static var textInputField:FlxInputText;
 	static var nextButton:FlxText;
@@ -25,19 +24,16 @@ class NameYourShopState extends FlxState
 	static var volumeField:FlxInputText;
 	static var volumeLabel:FlxText;
 
-	public function new(bp:Bool)
-	{
+	public function new(bp:Bool) {
 		super();
 		bypass = bp;
 	}
 
-	public override function create()
-	{
+	public override function create() {
 		super.create();
 
 		SessionStorage.loadDataFromJSON();
-		if (SessionStorage.shopName != "" && bypass)
-		{
+		if (SessionStorage.shopName != "" && bypass) {
 			FlxG.switchState(new MainActivity());
 		}
 
@@ -85,26 +81,21 @@ class NameYourShopState extends FlxState
 		// Main.menuMusic.resume();
 	}
 
-	public override function update(dt:Float)
-	{
+	public override function update(dt:Float) {
 		super.update(dt);
 
 		SessionStorage.volume = Std.parseInt(volumeField.textField.text) / 100;
 
-		if (FlxG.mouse.overlaps(nextButton))
-		{
+		if (FlxG.mouse.overlaps(nextButton)) {
 			nextButton.color = FlxColor.fromInt(0xFFFF0000);
-			if (FlxG.mouse.justPressed)
-			{
+			if (FlxG.mouse.justPressed) {
 				SessionStorage.shopName = textInputField.textField.text;
 				SessionStorage.cheesePizzaPrice = Std.parseInt(basePriceField.textField.text);
 				SessionStorage.pricePerTopping = Std.parseInt(toppingPriceField.textField.text);
 				SessionStorage.saveDataToJSON();
 				FlxG.switchState(new MainActivity());
 			}
-		}
-		else
-		{
+		} else {
 			nextButton.color = FlxColor.fromInt(0xFFFFFFFF);
 		}
 	}

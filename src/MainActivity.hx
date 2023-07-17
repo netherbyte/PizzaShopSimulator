@@ -14,8 +14,7 @@ import openfl.display.FPS;
 using Toppings;
 using StringTools;
 
-class MainActivity extends FlxState
-{
+class MainActivity extends FlxState {
 	static var background:FlxSprite;
 
 	static var titleText:FlxText;
@@ -70,8 +69,7 @@ class MainActivity extends FlxState
 	static var salesIndicator:FlxText;
 	static var revenueIndicator:FlxText;
 
-	public override function create()
-	{
+	public override function create() {
 		super.create();
 
 		background = new FlxSprite();
@@ -83,12 +81,9 @@ class MainActivity extends FlxState
 		freezeWorkspace = false;
 
 		titleText = new FlxText(0, 0, 0, Text.translatable("shop.name.loading")).setFormat(Reference.FONT, 16, FlxColor.BLACK, CENTER);
-		try
-		{
+		try {
 			titleText.text = SessionStorage.shopName + Text.translatable("kitchen.suffix");
-		}
-		catch (error)
-		{
+		} catch (error) {
 			titleText.text = Text.translatable("shop.name.error");
 		}
 		add(titleText);
@@ -110,12 +105,9 @@ class MainActivity extends FlxState
 		orderDescLine2.visible = false;
 		add(orderDescLine2);
 
-		if (SessionStorage.tutorialCompleted)
-		{
+		if (SessionStorage.tutorialCompleted) {
 			order = OrderGenerator.generateOrder();
-		}
-		else
-		{
+		} else {
 			order = {
 				customerName: Names.getNames()[Random.int(0, Names.getNames().length - 1)],
 				topping: Toppings.PEPPERONI,
@@ -124,8 +116,7 @@ class MainActivity extends FlxState
 		}
 
 		orderDescLine1.text = Text.translatable("order.from") + " " + order.customerName;
-		switch (order.topping)
-		{
+		switch (order.topping) {
 			case NONE:
 				orderDescLine2.text = Text.translatable("pizza.cheese");
 			case PEPPERONI:
@@ -161,8 +152,7 @@ class MainActivity extends FlxState
 		tutorialArrow.x = sauceIcon.width;
 		tutorialArrow.y = doughIcon.y;
 
-		if (SessionStorage.tutorialCompleted)
-		{
+		if (SessionStorage.tutorialCompleted) {
 			tutorialArrow.visible = false;
 		}
 		add(tutorialArrow);
@@ -171,8 +161,7 @@ class MainActivity extends FlxState
 		dragHereHint = new FlxText(0, 0, 0, Text.translatable("tutorial.clickdough")).setFormat(Reference.FONT, 32, FlxColor.BLACK, CENTER);
 		dragHereHint.screenCenter(XY);
 		dragHereHint.y -= dragHereHint.height * 4;
-		if (SessionStorage.tutorialCompleted)
-		{
+		if (SessionStorage.tutorialCompleted) {
 			dragHereHint.visible = false;
 		}
 		add(dragHereHint);
@@ -236,10 +225,9 @@ class MainActivity extends FlxState
 		Main.playMainMusic();
 	}
 
-	public override function update(dt:Float)
-	{
+	public override function update(dt:Float) {
 		super.update(dt);
-		
+
 		titleText.text = SessionStorage.shopName + Text.translatable("kitchen.suffix");
 		salesIndicator.text = SessionStorage.totalSales + " " + Text.translatable("stats.sales");
 		revenueIndicator.text = SessionStorage.totalRevenue + " " + Text.translatable("stats.coins");
@@ -248,15 +236,12 @@ class MainActivity extends FlxState
 		revenueIndicator.screenCenter(X);
 		revenueIndicator.x += revenueIndicator.width;
 
-		if (FlxG.mouse.overlaps(titleText) && FlxG.mouse.justPressed)
-		{
+		if (FlxG.mouse.overlaps(titleText) && FlxG.mouse.justPressed) {
 			FlxG.switchState(new NameYourShopState(false));
 		}
 
-		if (FlxG.mouse.overlaps(doughIcon) && FlxG.mouse.justPressed)
-		{
-			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == null)
-			{
+		if (FlxG.mouse.overlaps(doughIcon) && FlxG.mouse.justPressed) {
+			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == null) {
 				currentPizza.base.loadGraphic(Resources.UncookedDough__png);
 				currentPizza.base.visible = true;
 				dragHereHint.text = Text.translatable("tutorial.clicksauce");
@@ -268,10 +253,8 @@ class MainActivity extends FlxState
 			}
 		}
 
-		if (FlxG.mouse.overlaps(sauceIcon) && FlxG.mouse.justPressed)
-		{
-			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == DOUGH)
-			{
+		if (FlxG.mouse.overlaps(sauceIcon) && FlxG.mouse.justPressed) {
+			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == DOUGH) {
 				currentPizza.base.loadGraphic(Resources.UncookedDoughWithSauce__png);
 				dragHereHint.text = Text.translatable("tutorial.clickcheese");
 				dragHereHint.screenCenter(X);
@@ -282,10 +265,8 @@ class MainActivity extends FlxState
 			}
 		}
 
-		if (FlxG.mouse.overlaps(cheeseIcon) && FlxG.mouse.justPressed)
-		{
-			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == SAUCE)
-			{
+		if (FlxG.mouse.overlaps(cheeseIcon) && FlxG.mouse.justPressed) {
+			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == SAUCE) {
 				currentPizza.base.loadGraphic(Resources.UncookedDoughWithSauceAndCheese__png);
 				dragHereHint.text = Text.translatable("tutorial.clickpepperoni");
 				dragHereHint.screenCenter(X);
@@ -297,10 +278,8 @@ class MainActivity extends FlxState
 			}
 		}
 
-		if (FlxG.mouse.overlaps(pepperoniIcon) && FlxG.mouse.justPressed)
-		{
-			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == CHEESE)
-			{
+		if (FlxG.mouse.overlaps(pepperoniIcon) && FlxG.mouse.justPressed) {
+			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == CHEESE) {
 				// currentPizza.topping = new FlxSprite(0, 0, Resources.UncookedPepperoni__png);
 				currentPizza.topping.screenCenter(XY);
 				currentPizza.topping.x += 48;
@@ -314,14 +293,12 @@ class MainActivity extends FlxState
 			}
 		}
 
-		if (FlxG.mouse.overlaps(currentPizza.base) && FlxG.mouse.justPressed)
-		{
+		if (FlxG.mouse.overlaps(currentPizza.base) && FlxG.mouse.justPressed) {
 			if (currentPizza.meta.composition.contains(DOUGH)
 				&& currentPizza.meta.composition.contains(SAUCE)
 				&& currentPizza.meta.composition.contains(CHEESE)
 				&& !pizzaInOven
-				&& !freezeWorkspace)
-			{
+				&& !freezeWorkspace) {
 				// currentPizza.base.visible = false;
 				// currentPizza.topping.visible = false;
 				dragHereHint.text = Text.translatable("tutorial.ovenwait");
@@ -340,65 +317,53 @@ class MainActivity extends FlxState
 			}
 		}
 
-		if (pizzaInOven)
-		{
+		if (pizzaInOven) {
 			cookTime += dt;
 			dragHereHint.text = Text.translatable("tutorial.cooking").replace("%t", Math.round(maxCookTime - cookTime) + "");
 			dragHereHint.screenCenter(X);
 			cookIndicator.visible = true;
 			cookIndicator.text = "" + Math.round(maxCookTime - cookTime);
-		}
-		else
-		{
+		} else {
 			cookIndicator.visible = false;
 		}
 
-		if (cookTime >= maxCookTime)
-		{
+		if (cookTime >= maxCookTime) {
 			pizzaInOven = false;
 			ovenRack.loadGraphic(Resources.ovenresized_1__png);
 			dragHereHint.text = Text.translatable("tutorial.done");
 			dragHereHint.screenCenter(X);
 			finishTutorialButton.visible = true;
 			cookTime = 0;
-			if (SessionStorage.tutorialCompleted)
-			{
+			if (SessionStorage.tutorialCompleted) {
 				finishTutorialButton.text = Text.translatable("order.deliver");
 			}
 			// currentPizza.base.visible = true;
 			// currentPizza.topping.visible = true;
 		}
 
-		if (FlxG.mouse.overlaps(finishTutorialButton) && FlxG.mouse.justPressed)
-		{
+		if (FlxG.mouse.overlaps(finishTutorialButton) && FlxG.mouse.justPressed) {
 			FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
 			finishTutorialButton.visible = false;
-			if (!SessionStorage.tutorialCompleted)
-			{
+			if (!SessionStorage.tutorialCompleted) {
 				SessionStorage.tutorialCompleted = true;
 				SessionStorage.saveDataToJSON();
 			}
-			if (OrderChecker.verify(order, currentPizza))
-			{
+			if (OrderChecker.verify(order, currentPizza)) {
 				SessionStorage.totalSales++;
 				SessionStorage.totalRevenue += SessionStorage.cheesePizzaPrice;
 				SessionStorage.totalRevenue += order.tip;
-				if (order.topping == PEPPERONI)
-				{
+				if (order.topping == PEPPERONI) {
 					SessionStorage.totalRevenue += SessionStorage.pricePerTopping;
 				}
 				SessionStorage.saveDataToJSON();
 				FlxG.switchState(new MainActivity());
-			}
-			else
-			{
+			} else {
 				orderFeedback.visible = true;
 				acceptOrderFeedbackButton.visible = true;
 			}
 		}
 
-		if (FlxG.mouse.overlaps(acceptOrderFeedbackButton) && FlxG.mouse.justPressed)
-		{
+		if (FlxG.mouse.overlaps(acceptOrderFeedbackButton) && FlxG.mouse.justPressed) {
 			FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
 			FlxG.switchState(new MainActivity());
 		}

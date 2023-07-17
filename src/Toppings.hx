@@ -1,7 +1,6 @@
 package;
 
-enum Toppings
-{
+enum Toppings {
 	NONE;
 	PEPPERONI;
 	SAUSAGE;
