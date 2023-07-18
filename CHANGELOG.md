@@ -16,3 +16,4 @@
 
 - Music restarts every time a pizza is delivered
 - Rename shop menu flashes on screen when clicking play button when the name is already set
+- Sound gets muted when pressing `0`

@@ -21,6 +21,7 @@ class Main extends Sprite {
 		if (SessionStorage.debug)
 			Lib.current.addChild(new FPS(10, 20, 0x000000));
 		FlxG.autoPause = false;
+		FlxG.sound.muteKeys = [];
 	}
 
 	public static function playMainMusic() {
