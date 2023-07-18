@@ -4,4 +4,6 @@ enum Toppings {
 	NONE;
 	PEPPERONI;
 	SAUSAGE;
+	EXTRA_CHEESE;
+	GREEN_BELL_PEPPER;
 }

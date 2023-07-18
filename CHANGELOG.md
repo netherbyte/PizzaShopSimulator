@@ -4,6 +4,8 @@
 
 - Language translation support with selection screen
 - Sausage topping
+- Extra cheese topping
+- Green bell pepper topping
 
 ## Removals
 

@@ -30,6 +30,8 @@ class MainActivity extends FlxState {
 	static var cheeseIcon:FlxSprite;
 	static var pepperoniIcon:FlxSprite;
 	static var sausageIcon:FlxSprite;
+	static var excheeseIcon:FlxSprite;
+	static var greenPepperIcon:FlxSprite;
 	static var tutorialArrow:FlxText;
 
 	static var draggable:FlxSprite; // currently with a single cursor you can only drag one at a time so there is no point in having a draggable sprite for each ingredient
@@ -124,6 +126,10 @@ class MainActivity extends FlxState {
 				orderDescLine2.text = Text.translatable("pizza.pepperoni");
 			case SAUSAGE:
 				orderDescLine2.text = Text.translatable("pizza.sausage");
+			case EXTRA_CHEESE:
+				orderDescLine2.text = Text.translatable("pizza.excheese");
+			case GREEN_BELL_PEPPER:
+				orderDescLine2.text = Text.translatable("pizza.greenpepper");
 		}
 		orderNotifyTitle.x = FlxG.width - orderNotifyTitle.width;
 		orderDescLine1.x = FlxG.width - orderDescLine1.width;
@@ -133,26 +139,31 @@ class MainActivity extends FlxState {
 		orderDescLine2.visible = true;
 
 		// ingridients hud
-		sauceIcon = new FlxSprite(0, 0, "res/images/Sauce.png");
-		sauceIcon.y = ((FlxG.height / 2) - (sauceIcon.height / 2));
-		sauceIcon.y -= sauceIcon.height / 1.5;
-		add(sauceIcon);
+		var items = 7;
+		var itemHeight = 64;
+		var hHeight = items * itemHeight;
+		var yOffset = (FlxG.height - hHeight) / 2;
 		doughIcon = new FlxSprite(0, 0, "res/images/UncookedDough.png");
-		doughIcon.y = ((FlxG.height / 2) - (doughIcon.height / 2));
-		doughIcon.y -= doughIcon.height * 2;
+		doughIcon.y = yOffset + (itemHeight * 0);
 		add(doughIcon);
+		sauceIcon = new FlxSprite(0, 0, "res/images/Sauce.png");
+		sauceIcon.y = yOffset + (itemHeight * 1);
+		add(sauceIcon);
 		cheeseIcon = new FlxSprite(0, 0, "res/images/Cheese.png");
-		cheeseIcon.y = ((FlxG.height / 2) - (cheeseIcon.height / 2));
-		cheeseIcon.y += cheeseIcon.height / 1.5;
+		cheeseIcon.y = yOffset + (itemHeight * 2);
 		add(cheeseIcon);
 		pepperoniIcon = new FlxSprite(0, 0, "res/images/UncookedPepperoni.png");
-		pepperoniIcon.y = ((FlxG.height / 2) - (pepperoniIcon.height / 2));
-		pepperoniIcon.y += pepperoniIcon.height * 2;
+		pepperoniIcon.y = yOffset + (itemHeight * 3);
 		add(pepperoniIcon);
 		sausageIcon = new FlxSprite(0, 0, "res/images/sausage.png");
-		sausageIcon.y = ((FlxG.height / 2) - (sausageIcon.height / 2));
-		sausageIcon.y += sausageIcon.height * 3;
+		sausageIcon.y = yOffset + (itemHeight * 4);
 		add(sausageIcon);
+		excheeseIcon = new FlxSprite(0, 0, "res/images/excheese.png");
+		excheeseIcon.y = yOffset + (itemHeight * 5);
+		add(excheeseIcon);
+		greenPepperIcon = new FlxSprite(0, 0, "res/images/green_pepper.png");
+		greenPepperIcon.y = yOffset + (itemHeight * 6);
+		add(greenPepperIcon);
 		tutorialArrow = new FlxText(0, 0, 0, "<-").setFormat(Reference.FONT, 24, FlxColor.BLACK, CENTER);
 		tutorialArrow.x = sauceIcon.width;
 		tutorialArrow.y = doughIcon.y;
@@ -309,6 +320,36 @@ class MainActivity extends FlxState {
 				dragHereHint.text = Text.translatable("tutorial.movepizza");
 				dragHereHint.screenCenter(X);
 				currentPizza.meta.topping = SAUSAGE;
+				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
+			}
+		}
+
+		if (FlxG.mouse.overlaps(excheeseIcon) && FlxG.mouse.justPressed) {
+			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == CHEESE) {
+				currentPizza.topping.loadGraphic("res/images/excheese.png");
+				currentPizza.topping.screenCenter(XY);
+				currentPizza.topping.x += 48;
+				currentPizza.topping.y += 32;
+				currentPizza.topping.visible = true;
+				tutorialArrow.visible = false;
+				dragHereHint.text = Text.translatable("tutorial.movepizza");
+				dragHereHint.screenCenter(X);
+				currentPizza.meta.topping = EXTRA_CHEESE;
+				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
+			}
+		}
+
+		if (FlxG.mouse.overlaps(greenPepperIcon) && FlxG.mouse.justPressed) {
+			if (!pizzaInOven && !freezeWorkspace && lastIngredientAdded == CHEESE) {
+				currentPizza.topping.loadGraphic("res/images/green_pepper.png");
+				currentPizza.topping.screenCenter(XY);
+				currentPizza.topping.x += 48;
+				currentPizza.topping.y += 32;
+				currentPizza.topping.visible = true;
+				tutorialArrow.visible = false;
+				dragHereHint.text = Text.translatable("tutorial.movepizza");
+				dragHereHint.screenCenter(X);
+				currentPizza.meta.topping = GREEN_BELL_PEPPER;
 				FlxG.sound.play(Resources.Plop__wav, 0.5 * SessionStorage.volume);
 			}
 		}
