@@ -19,6 +19,7 @@ class SessionStorage {
 	public static var pricePerTopping:Float = 4.0;
 	public static var volume:Float = 1.0;
 	public static var language:String = "en_us";
+	public static var debug:Bool = false;
 
 	public static function initJSONStorage() {
 		var jsonData = Json.stringify({
@@ -39,7 +40,8 @@ class SessionStorage {
 					revenue: totalRevenue,
 					sales: totalSales
 				}
-			}
+			},
+			debug: debug
 		});
 		var fp = Path.join([System.applicationStorageDirectory, "data.json"]);
 		trace(fp);
@@ -68,6 +70,7 @@ class SessionStorage {
 		pricePerTopping = json.shop.toppingPrice;
 		volume = json.volume;
 		language = json.language;
+		debug = json.debug;
 		if (shopName == "") {
 			trace("Data loaded however it is empty");
 		} else {
@@ -99,7 +102,8 @@ class SessionStorage {
 					revenue: totalRevenue,
 					sales: totalSales
 				}
-			}
+			},
+			debug: debug
 		});
 		File.saveContent(fp, json);
 		trace("Saved data");

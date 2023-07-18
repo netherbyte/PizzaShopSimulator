@@ -14,5 +14,6 @@ typedef SessionDataStorageFileStructure = {
 		}, shop:{
 			revenue:Float, sales:Int
 		}
-	}
+	},
+	debug:Bool
 }
