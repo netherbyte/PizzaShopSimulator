@@ -4,7 +4,7 @@ import engine.SessionStorage;
 
 class OrderGenerator {
 	public static function generateOrder():OrderDataStructure {
-		var topping:Int = Random.int(0, 6);
+		var topping:Int = Random.int(0, 5);
 		var toppings:Toppings = Toppings.NONE;
 		switch (topping) {
 			case 1:
@@ -13,7 +13,7 @@ class OrderGenerator {
 				toppings = Toppings.SAUSAGE;
 			case 3, 4:
 				toppings = Toppings.EXTRA_CHEESE;
-			case 5, 6:
+			case 5:
 				toppings = Toppings.GREEN_BELL_PEPPER;
 		}
 		var name:String = Names.getNames()[Random.int(0, Names.getNames().length - 1)];
