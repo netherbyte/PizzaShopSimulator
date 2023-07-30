@@ -18,7 +18,7 @@ class Text {
 	public static function translatable(key:String):String {
 		for (i in 0...translationsK.length) {
 			if (translationsK[i] == key)
-				return translationsV[i];
+				return translationsV[i].substr(0, translationsV[i].length - 1);
 		}
 		return key;
 	}
